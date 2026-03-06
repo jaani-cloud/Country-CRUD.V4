@@ -1,5 +1,5 @@
 
-using Domain.Entities;
+using App.Commons;
 using Infra.Data;
 using Infra.Repos.Classes;
 using Infra.Repos.Interfaces;
@@ -26,6 +26,8 @@ public class Program
         builder.Services.AddScoped<ICountryRepo, CountryRepo>();
         builder.Services.AddScoped<IStateRepo, StateRepo>();
         builder.Services.AddScoped<ICityRepo, CityRepo>();
+
+        builder.Services.AddAutoMapper(typeof(Mapping));
 
         var app = builder.Build();
 

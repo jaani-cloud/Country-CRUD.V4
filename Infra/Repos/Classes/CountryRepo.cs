@@ -35,7 +35,7 @@ public class CountryRepo : ICountryRepo
     }
 
     public async Task<Country?> GetByName(string name) =>
-        await _context.Countries.AsNoTracking().FirstOrDefaultAsync(c => c.Name == name);
+        await _context.Countries.AsNoTracking().FirstOrDefaultAsync(c => c.Name.ToLower() == name.ToLower());
 
     public async Task<Country?> GetById(int id) => 
         await _context.Countries.FindAsync(id);
