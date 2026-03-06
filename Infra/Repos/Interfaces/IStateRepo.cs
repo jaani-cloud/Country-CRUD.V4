@@ -2,7 +2,7 @@
 
 namespace Infra.Repos.Interfaces;
 
-interface IStateRepo
+public interface IStateRepo
 {
     public Task<bool> Create(State state);
     public Task<bool> Update(State state);
