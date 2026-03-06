@@ -1,5 +1,7 @@
 
 using App.Commons;
+using App.Services.Classes;
+using App.Services.Interfaces;
 using Infra.Data;
 using Infra.Repos.Classes;
 using Infra.Repos.Interfaces;
@@ -28,6 +30,10 @@ public class Program
         builder.Services.AddScoped<ICityRepo, CityRepo>();
 
         builder.Services.AddAutoMapper(typeof(Mapping));
+
+        builder.Services.AddScoped<ICountryService, CountryService>();
+        builder.Services.AddScoped<IStateService, StateService>();
+        builder.Services.AddScoped<ICityService, CityService>();
 
         var app = builder.Build();
 
