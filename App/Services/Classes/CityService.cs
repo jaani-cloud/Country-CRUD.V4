@@ -26,7 +26,7 @@ public class CityService : ICityService
         if (cityExists != null)
             throw new BadRequestException($"{input.Name.ToLower()} already exists at id: {cityExists.Id}");
 
-        var stateExists = await _cityRepo.GetById(input.StateId);
+        var stateExists = await _stateRepo.GetById(input.StateId);
         if (stateExists == null)
             throw new BadRequestException($"StateId: {input.StateId} elle..");
 
@@ -35,6 +35,8 @@ public class CityService : ICityService
 
         if (!result)
             throw new BadRequestException("failed to crate");
+
+        return true;
     }
 
     public async Task<bool> Update(CityCreateUpdateDto input, int id)
@@ -48,7 +50,7 @@ public class CityService : ICityService
             throw new BadRequestException("state: ellee..");
 
         var cityExists = await _cityRepo.GetByName(input.Name);
-        if (cityExists != null && id == cityExists.Id)
+        if (cityExists != null && id != cityExists.Id)
             throw new BadRequestException($"{cityExists.Name} is already exists at id: {cityExists.Id}");
 
         var result = await _cityRepo.Update(city);
